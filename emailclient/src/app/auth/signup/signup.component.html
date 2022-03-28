@@ -14,3 +14,7 @@
   </div>
   <button class="ui submit button primary">Submit</button>
 </form>
+
+{{ form.get("username")?.errors | json }}
+{{ form.get("password")?.errors | json }}
+{{ form.get("passwordConfirmation")?.errors | json }}
