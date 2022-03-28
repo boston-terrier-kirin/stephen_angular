@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4 mt-5">
-      <div class="border p-5 rounded shadow-sm bg-white">
-        <h4>Create an account</h4>
+      <div class="border p-5 rounded shadow bg-white">
+        <p class="text-center display-6 mb-3">Create an account</p>
         <form [formGroup]="form">
           <div class="row">
             <div class="col-12 mb-3">
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col d-grid">
+            <div class="col-12 d-grid">
               <button class="btn btn-primary">Signup</button>
             </div>
           </div>
@@ -43,4 +43,5 @@
   {{ form.get("username")?.errors | json }}
   {{ form.get("password")?.errors | json }}
   {{ form.get("passwordConfirmation")?.errors | json }}
+  {{ form.errors | json }}
 </div>
