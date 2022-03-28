@@ -1,20 +1,46 @@
-<h3>Create an account</h3>
-<form class="ui form" [formGroup]="form">
-  <div class="field">
-    <label>Username</label>
-    <input formControlName="username" />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 mt-4">
+      <div class="border p-3 rounded shadow">
+        <h4>Create an account</h4>
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <input
+                formControlName="username"
+                class="form-control"
+                type="text"
+                placeholder="Username"
+              />
+            </div>
+            <div class="col-12 mb-3">
+              <input
+                formControlName="password"
+                class="form-control"
+                type="password"
+                placeholder="Password"
+              />
+            </div>
+            <div class="col-12 mb-3">
+              <input
+                formControlName="passwordConfirmation"
+                class="form-control"
+                type="password"
+                placeholder="Password Confirmation"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col d-grid">
+              <button class="btn btn-primary">Signup</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <label>Password</label>
-    <input formControlName="password" />
-  </div>
-  <div class="field">
-    <label>Password Confirmation</label>
-    <input formControlName="passwordConfirmation" />
-  </div>
-  <button class="ui submit button primary">Submit</button>
-</form>
 
-{{ form.get("username")?.errors | json }}
-{{ form.get("password")?.errors | json }}
-{{ form.get("passwordConfirmation")?.errors | json }}
+  {{ form.get("username")?.errors | json }}
+  {{ form.get("password")?.errors | json }}
+  {{ form.get("passwordConfirmation")?.errors | json }}
+</div>
