@@ -19,6 +19,10 @@ interface SignupResponse {
   username: string;
 }
 
+interface SignedinResponse {
+  authenticated: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -48,10 +52,18 @@ export class AuthService {
   }
 
   checkAuth() {
-    return this.httpClient.get(`${rootUrl}/auth/signedin`).pipe(
-      tap((res) => {
-        console.log(res);
-      })
+    return (
+      this.httpClient
+        // HttpInterceptorでCookieも送っているので、GETするだけで認証されているかをチェックできる。
+        .get<SignedinResponse>(`${rootUrl}/auth/signedin`)
+        .pipe(
+          tap((res) => {
+            const { authenticated } = res;
+            if (authenticated) {
+              this.signedin$.next(true);
+            }
+          })
+        )
     );
   }
 }
