@@ -46,4 +46,12 @@ export class AuthService {
         })
       );
   }
+
+  checkAuth() {
+    return this.httpClient.get(`${rootUrl}/auth/signedin`).pipe(
+      tap((res) => {
+        console.log(res);
+      })
+    );
+  }
 }
