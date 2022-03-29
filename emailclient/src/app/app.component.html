@@ -1,7 +1,15 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
-  <div class="container">
-    <a class="navbar-brand" routerLink="/">Angular Email</a>
-    <ul class="navbar-nav me-2">
+<div class="container">
+  <header
+    class="d-flex flex-wrap justify-content-center py-3 mb-5 border-bottom"
+  >
+    <a
+      routerLink="/"
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+    >
+      <span class="fs-4 text-secondary">Angular Email</span>
+    </a>
+
+    <ul class="nav nav-pills">
       <ng-container *ngIf="signedin$ | async">
         <li class="nav-item">
           <a class="nav-link" routerLink="/inbox" routerLinkActive="active"
@@ -31,6 +39,6 @@
         </li>
       </ng-container>
     </ul>
-  </div>
-</nav>
+  </header>
+</div>
 <router-outlet></router-outlet>
