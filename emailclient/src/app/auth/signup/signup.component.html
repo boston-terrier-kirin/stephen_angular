@@ -7,9 +7,17 @@
           <div class="row">
             <div class="col-12 mb-3">
               <app-input
-                [control]="fields.username"
+                [control]="controls.username"
                 placeholder="Username"
               ></app-input>
+              <ng-container *ngIf="showErrors('username')">
+                <span
+                  *ngIf="controls.username?.errors?.['nonUniqueUsername']"
+                  class="text-danger"
+                >
+                  Username is taken.
+                </span>
+              </ng-container>
             </div>
             <div class="col-12 mb-3">
               <input

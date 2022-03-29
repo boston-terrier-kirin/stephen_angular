@@ -43,7 +43,7 @@ export class UniqueUsernameValidator implements AsyncValidator {
         }
 
         // それ以外は、ネットワークエラー
-        return of({ noConnection: true });
+        return of({ unexpected: true });
       })
     );
   };

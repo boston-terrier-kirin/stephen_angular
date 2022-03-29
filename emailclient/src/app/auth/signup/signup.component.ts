@@ -9,10 +9,10 @@ import { UniqueUsernameValidator } from '../validators/unique-username-validator
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  fields = this.createFormFields();
+  controls = this.createControls();
   form = new FormGroup(
     {
-      ...this.fields,
+      ...this.controls,
     },
     {
       validators: [MatchValidator.match('password', 'passwordConfirmation')],
@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  createFormFields() {
+  createControls() {
     const username = new FormControl(
       '',
       [
@@ -52,5 +52,10 @@ export class SignupComponent implements OnInit {
       password,
       passwordConfirmation,
     };
+  }
+
+  showErrors(name: any) {
+    const { dirty, touched, errors } = this.form.get(name) as FormControl;
+    return dirty && touched && errors;
   }
 }

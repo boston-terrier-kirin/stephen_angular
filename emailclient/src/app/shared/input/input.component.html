@@ -4,3 +4,24 @@
   [placeholder]="placeholder"
   class="form-control"
 />
+<ng-container *ngIf="showErrors()">
+  <span *ngIf="control?.errors?.['required']" class="text-danger">
+    Value is requreid.
+  </span>
+  <span *ngIf="control?.errors?.['minlength']" class="text-danger">
+    Value must be at least
+    {{ control?.errors?.['minlength'].requiredLength }}
+    characters.
+  </span>
+  <span *ngIf="control?.errors?.['maxlength']" class="text-danger">
+    Value must be within
+    {{ control?.errors?.['maxlength'].requiredLength }}
+    characters.
+  </span>
+  <span *ngIf="control?.errors?.['pattern']" class="text-danger">
+    Invalid format.
+  </span>
+  <span *ngIf="control?.errors?.['unexpected']" class="text-danger">
+    Unexpected error occurrd. Please try it later.
+  </span>
+</ng-container>

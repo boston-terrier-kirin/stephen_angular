@@ -18,8 +18,8 @@ export class MatchValidator {
           ? null
           : { passwordDontMatch: true };
 
-      // 相関チェックした結果をコントロールに紐づける。
-      // コントロールとフォームの両方がエラーになる。
+      // 相関チェックした結果をコントロールに紐づけて、
+      // コントロールとフォームのどちらでも処理できるようにする。
       matchingControl.setErrors(error);
 
       return error;
