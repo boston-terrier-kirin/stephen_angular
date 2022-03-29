@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
 
 @Component({
@@ -15,6 +14,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.signedin$ = this.authService.signedin$;
+
+    // ブラウザのリフレッシュのタイミングで認証Cookieがあるかをチェック。
+    // OKであれば、signedin$を更新する。
     this.authService.checkAuth().subscribe();
   }
 }
