@@ -1,1 +1,33 @@
-<p>signin works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="border p-5 rounded shadow bg-white">
+        <p class="text-center display-6 text-secondary mb-3">Signin</p>
+        <form [formGroup]="form" (ngSubmit)="signin()">
+          <div class="row justify-content-center">
+            <div class="col-12 mb-3">
+              <app-input
+                [control]="controls.username"
+                placeholder="Username"
+              ></app-input>
+            </div>
+            <div class="col-12 mb-3">
+              <app-input
+                [control]="controls.password"
+                placeholder="Password"
+                type="password"
+              ></app-input>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-4 d-grid">
+              <button class="btn btn-primary" [disabled]="form.invalid">
+                Signin
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,13 @@ interface SignupResponse {
   username: string;
 }
 
+interface SigninCredentials {
+  username: string;
+  password: string;
+}
+
+interface SigninResponse extends SignupResponse {}
+
 interface SignedinResponse {
   authenticated: boolean;
 }
@@ -43,6 +50,17 @@ export class AuthService {
   signup(credentials: SignupCredentials): Observable<SignupResponse> {
     return this.httpClient
       .post<SignupResponse>(`${rootUrl}/auth/signup`, credentials)
+      .pipe(
+        tap(() => {
+          // エラーになったらtapはスキップされるので、無条件でtrueにしてOK。
+          this.signedin$.next(true);
+        })
+      );
+  }
+
+  signin(credentials: SignupCredentials): Observable<SigninResponse> {
+    return this.httpClient
+      .post<SigninCredentials>(`${rootUrl}/auth/signin`, credentials)
       .pipe(
         tap(() => {
           // エラーになったらtapはスキップされるので、無条件でtrueにしてOK。

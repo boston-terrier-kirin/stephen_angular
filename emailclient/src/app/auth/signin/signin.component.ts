@@ -1,15 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
+  controls = this.createControls();
+  form = new FormGroup({
+    ...this.controls,
+  });
 
-  constructor() { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  signin() {
+    this.authService.signin(this.form.value).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        this.form.setErrors({
+          unexpected: true,
+        });
+      },
+    });
   }
 
+  createControls() {
+    const username = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+      Validators.pattern(/^[a-z0-9]+$/),
+    ]);
+
+    const password = new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20),
+    ]);
+
+    return {
+      username,
+      password,
+    };
+  }
 }
