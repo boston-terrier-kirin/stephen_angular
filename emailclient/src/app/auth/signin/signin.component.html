@@ -3,6 +3,16 @@
     <div class="col-md-8 col-lg-6">
       <div class="border p-5 rounded shadow bg-white">
         <p class="text-center display-6 text-secondary mb-3">Signin</p>
+        <app-message
+          *ngIf="showInvalidCredentialError()"
+          type="error"
+          message="Invalid credentials."
+        ></app-message>
+        <app-message
+          *ngIf="showUnExpectedError()"
+          type="error"
+          message="Unexpected error occurred. Please try later again."
+        ></app-message>
         <form [formGroup]="form" (ngSubmit)="signin()">
           <div class="row justify-content-center">
             <div class="col-12 mb-3">

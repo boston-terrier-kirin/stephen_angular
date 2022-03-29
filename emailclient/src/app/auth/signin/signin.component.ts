@@ -19,15 +19,28 @@ export class SigninComponent implements OnInit {
 
   signin() {
     this.authService.signin(this.form.value).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
+      next: () => {},
       error: (err) => {
+        if (err.error.password) {
+          this.form.setErrors({
+            invalidCredential: true,
+          });
+          return;
+        }
+
         this.form.setErrors({
           unexpected: true,
         });
       },
     });
+  }
+
+  showInvalidCredentialError() {
+    return this.form.errors?.['invalidCredential'];
+  }
+
+  showUnExpectedError() {
+    return this.form.errors?.['unexpected'];
   }
 
   createControls() {
