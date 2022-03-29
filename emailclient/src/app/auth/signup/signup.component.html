@@ -6,12 +6,10 @@
         <form [formGroup]="form">
           <div class="row">
             <div class="col-12 mb-3">
-              <input
-                formControlName="username"
-                class="form-control"
-                type="text"
+              <app-input
+                [control]="fields.username"
                 placeholder="Username"
-              />
+              ></app-input>
             </div>
             <div class="col-12 mb-3">
               <input
