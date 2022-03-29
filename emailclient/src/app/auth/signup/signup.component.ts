@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 import { MatchValidator } from '../validators/match-validator';
 import { UniqueUsernameValidator } from '../validators/unique-username-validator';
 
@@ -19,9 +20,25 @@ export class SignupComponent implements OnInit {
     }
   );
 
-  constructor(private uniqueUsernameValidator: UniqueUsernameValidator) {}
+  constructor(
+    private uniqueUsernameValidator: UniqueUsernameValidator,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
+
+  signup() {
+    this.authService.signup(this.form.value).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        this.form.setErrors({
+          unexpected: true,
+        });
+      },
+    });
+  }
 
   createControls() {
     const username = new FormControl(
@@ -67,5 +84,9 @@ export class SignupComponent implements OnInit {
       this.controls.passwordConfirmation.touched &&
       this.form.errors?.['passwordUnMatch']
     );
+  }
+
+  showUnExpectedError() {
+    return this.form.errors?.['unexpected'];
   }
 }
