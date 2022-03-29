@@ -23,7 +23,7 @@ export class SigninComponent implements OnInit {
       error: (err) => {
         if (err.error.password) {
           this.form.setErrors({
-            invalidCredential: true,
+            invalidCredentials: true,
           });
           return;
         }
@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
   }
 
   showInvalidCredentialError() {
-    return this.form.errors?.['invalidCredential'];
+    return this.form.errors?.['invalidCredentials'];
   }
 
   showUnExpectedError() {
