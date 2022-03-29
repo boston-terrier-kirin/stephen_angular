@@ -58,4 +58,14 @@ export class SignupComponent implements OnInit {
     const { dirty, touched, errors } = this.form.get(name) as FormControl;
     return dirty && touched && errors;
   }
+
+  showPasswordUnMatchError() {
+    return (
+      this.controls.password.dirty &&
+      this.controls.password.touched &&
+      this.controls.passwordConfirmation.dirty &&
+      this.controls.passwordConfirmation.touched &&
+      this.form.errors?.['passwordUnMatch']
+    );
+  }
 }

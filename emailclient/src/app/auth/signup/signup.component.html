@@ -3,6 +3,12 @@
     <div class="col-md-6 col-lg-4 mt-5">
       <div class="border p-5 rounded shadow bg-white">
         <p class="text-center display-6 mb-3">Create an account</p>
+        <ng-container *ngIf="showPasswordUnMatchError()">
+          <app-message
+            type="error"
+            message="Password don't match."
+          ></app-message>
+        </ng-container>
         <form [formGroup]="form">
           <div class="row">
             <div class="col-12 mb-3">
@@ -20,20 +26,18 @@
               </ng-container>
             </div>
             <div class="col-12 mb-3">
-              <input
-                formControlName="password"
-                class="form-control"
-                type="password"
+              <app-input
+                [control]="controls.password"
                 placeholder="Password"
-              />
+                type="password"
+              ></app-input>
             </div>
             <div class="col-12 mb-3">
-              <input
-                formControlName="passwordConfirmation"
-                class="form-control"
-                type="password"
+              <app-input
+                [control]="controls.passwordConfirmation"
                 placeholder="Password Confirmation"
-              />
+                type="password"
+              ></app-input>
             </div>
           </div>
           <div class="row">
@@ -45,9 +49,4 @@
       </div>
     </div>
   </div>
-
-  {{ form.get("username")?.errors | json }}
-  {{ form.get("password")?.errors | json }}
-  {{ form.get("passwordConfirmation")?.errors | json }}
-  {{ form.errors | json }}
 </div>

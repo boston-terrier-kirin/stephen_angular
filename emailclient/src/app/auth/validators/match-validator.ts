@@ -16,11 +16,11 @@ export class MatchValidator {
       const error =
         control.value === matchingControl.value
           ? null
-          : { passwordDontMatch: true };
+          : { passwordUnMatch: true };
 
-      // 相関チェックした結果をコントロールに紐づけて、
-      // コントロールとフォームのどちらでも処理できるようにする。
-      matchingControl.setErrors(error);
+      // 相関チェックした結果をコントロールに紐づけて、コントロールとフォームのどちらでも処理できるようにする。
+      // これをやるともともとのエラーを上書きしてしまう。
+      // matchingControl.setErrors(error);
 
       return error;
     };
