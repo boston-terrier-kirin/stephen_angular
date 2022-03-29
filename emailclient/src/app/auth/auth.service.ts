@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 const rootUrl = 'https://api.angular-email.com';
 
@@ -22,6 +23,8 @@ interface SignupResponse {
   providedIn: 'root',
 })
 export class AuthService {
+  signedin$ = new BehaviorSubject<boolean | null>(false);
+
   constructor(private httpClient: HttpClient) {}
 
   usernameAvailable(username: string): Observable<UsernameAvailableResponse> {
@@ -34,9 +37,13 @@ export class AuthService {
   }
 
   signup(credentials: SignupCredentials): Observable<SignupResponse> {
-    return this.httpClient.post<SignupResponse>(
-      `${rootUrl}/auth/auth/signup`,
-      credentials
-    );
+    return this.httpClient
+      .post<SignupResponse>(`${rootUrl}/auth/signup`, credentials)
+      .pipe(
+        tap(() => {
+          // エラーになったらtapはスキップされるので、無条件でtrueにしてOK。
+          this.signedin$.next(true);
+        })
+      );
   }
 }

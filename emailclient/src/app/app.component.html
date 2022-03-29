@@ -1,1 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Angular Email</a>
+    <ul class="navbar-nav me-2">
+      <ng-container *ngIf="signedin$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/inbox" routerLinkActive="active"
+            >Inbox</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signout" routerLinkActive="active"
+            >Signout</a
+          >
+        </li>
+      </ng-container>
+      <ng-container *ngIf="!(signedin$ | async)">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Signin</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+            >Signup</a
+          >
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>
 <router-outlet></router-outlet>
