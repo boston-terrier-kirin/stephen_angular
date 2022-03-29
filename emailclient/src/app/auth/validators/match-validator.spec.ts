@@ -1,4 +1,4 @@
-import { MatchValidator } from './match-password';
+import { MatchValidator } from './match-validator';
 
 describe('MatchPassword', () => {
   it('should create an instance', () => {
