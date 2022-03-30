@@ -19,6 +19,9 @@
     {{ control?.errors?.['maxlength'].requiredLength }}
     characters.
   </span>
+  <span *ngIf="control?.errors?.['email']" class="text-danger">
+    Enter a valid email
+  </span>
   <span *ngIf="control?.errors?.['pattern']" class="text-danger">
     Invalid format.
   </span>

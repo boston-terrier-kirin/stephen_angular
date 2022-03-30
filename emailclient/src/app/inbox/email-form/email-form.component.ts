@@ -23,14 +23,17 @@ export class EmailFormComponent implements OnInit {
   }
 
   createControls() {
-    const to = new FormControl(this.email.to, [Validators.required]);
-    const from = new FormControl(this.email.from, [Validators.required]);
+    const from = new FormControl({ value: this.email.from, disabled: true });
+    const to = new FormControl(this.email.to, [
+      Validators.required,
+      Validators.email,
+    ]);
     const subject = new FormControl(this.email.subject, [Validators.required]);
     const text = new FormControl(this.email.text, [Validators.required]);
 
     return {
-      to,
       from,
+      to,
       subject,
       text,
     };
