@@ -1,4 +1,5 @@
 <div class="list-group">
+  <span class="list-group-item bg-light fw-bold pt-2 pb-2">Your Emails</span>
   <a
     [routerLink]="email.id"
     routerLinkActive="bg-light"
@@ -6,6 +7,6 @@
     class="list-group-item list-group-item-action"
   >
     <div class="fw-bold trim">{{ email.subject }}</div>
-    {{ email.from }}
+    <span class="text-muted">{{ email.from }}</span>
   </a>
 </div>

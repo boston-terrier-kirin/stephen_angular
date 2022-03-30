@@ -1,1 +1,25 @@
-<p>email-form works!</p>
+<form [formGroup]="form">
+  <div class="mb-2">
+    <app-input
+      [control]="controls.to"
+      placeholder="To"
+      type="email"
+    ></app-input>
+  </div>
+  <div class="mb-2">
+    <app-input
+      [control]="controls.from"
+      placeholder="From"
+      type="email"
+    ></app-input>
+  </div>
+  <div class="mb-2">
+    <app-input [control]="controls.subject" placeholder="Subject"></app-input>
+  </div>
+  <div class="mb-2">
+    <app-input [control]="controls.text" placeholder="Content"></app-input>
+  </div>
+  <div>
+    <button class="btn btn-primary">Send</button>
+  </div>
+</form>
