@@ -21,4 +21,8 @@ export class EmailCreateComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  onEmailSubmit(email: Email) {
+    console.log('onEmailSubmit', email);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Email } from '../models/email';
 
@@ -9,6 +9,7 @@ import { Email } from '../models/email';
 })
 export class EmailFormComponent implements OnInit {
   @Input() email!: Email;
+  @Output() emailSubmit = new EventEmitter<Email>();
 
   controls: any;
   form!: FormGroup;
@@ -37,5 +38,12 @@ export class EmailFormComponent implements OnInit {
       subject,
       text,
     };
+  }
+
+  send() {
+    // disabledになっている値も取得したい場合、this.form.getRawValue()
+    // console.log(this.form.getRawValue());
+
+    this.emailSubmit.emit(this.form.value);
   }
 }
