@@ -1,1 +1,6 @@
-<p>email-index works!</p>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item" *ngFor="let email of emails">
+    <div class="fw-bold">{{ email.subject }}</div>
+    {{ email.from }}
+  </li>
+</ul>
