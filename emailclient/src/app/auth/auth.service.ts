@@ -34,7 +34,10 @@ interface SignedinResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  signedin$ = new BehaviorSubject<boolean | null>(false);
+  // null : チェック中
+  // true : ログイン済み
+  // false: ログインしていない
+  signedin$ = new BehaviorSubject<boolean | null>(null);
 
   constructor(private httpClient: HttpClient) {}
 
@@ -87,6 +90,9 @@ export class AuthService {
             const { authenticated } = res;
             if (authenticated) {
               this.signedin$.next(true);
+            } else {
+              // 初期値nullのままでは、AuthGuardがログイン/未ログインを判定できないので、falseをセットする。
+              this.signedin$.next(false);
             }
           })
         )
