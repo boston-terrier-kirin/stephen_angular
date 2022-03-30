@@ -1,1 +1,12 @@
-<p>email-create works!</p>
+<div class="mb-2">
+  <button (click)="showModal = true" class="btn btn-outline-primary">
+    Compose
+  </button>
+</div>
+<app-modal (dismiss)="showModal = false" *ngIf="showModal">
+  <h3 modalTitle>Compose</h3>
+  <app-email-form></app-email-form>
+  <div modalAction>
+    <button class="btn btn-primary">Custom Button</button>
+  </div>
+</app-modal>
