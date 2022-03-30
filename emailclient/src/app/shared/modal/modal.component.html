@@ -1,0 +1,21 @@
+<div class="modal" (click)="onDismissClick()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <ng-content select="[modalTitle]"></ng-content>
+        </h5>
+        <button
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onDismissClick()"
+        ></button>
+      </div>
+      <div class="modal-body"><ng-content></ng-content></div>
+      <div class="modal-footer">
+        <ng-content select="[modalAction]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

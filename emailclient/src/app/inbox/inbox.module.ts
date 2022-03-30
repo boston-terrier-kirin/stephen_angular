@@ -10,6 +10,7 @@ import { EmailReplyComponent } from './email-reply/email-reply.component';
 import { EmailIndexComponent } from './email-index/email-index.component';
 import { EmailShowComponent } from './email-show/email-show.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
     InboxRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
   ],
 })
 export class InboxModule {}
