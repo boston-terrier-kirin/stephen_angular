@@ -15,6 +15,7 @@ export class EmailReplyComponent implements OnChanges {
 
   ngOnChanges(): void {
     // ngOnInitは1回しか呼ばれないので、ngOnChangeに変える必要がある。
+    // @Inputの値が変わったので、ngOnChangeが呼ばれているよう。
     this.email = {
       ...this.email,
       from: this.email.to,

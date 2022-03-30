@@ -3,7 +3,7 @@
   <a
     [routerLink]="email.id"
     routerLinkActive="bg-light"
-    *ngFor="let email of emails"
+    *ngFor="let email of emails$ | async"
     class="list-group-item list-group-item-action"
   >
     <div class="trim">{{ email.subject }}</div>

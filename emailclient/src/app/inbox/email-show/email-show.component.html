@@ -1,16 +1,18 @@
-<div class="card mb-3" *ngIf="email">
-  <div
-    class="card-header bg-light d-flex justify-content-center align-items-center"
-  >
-    <span class="me-md-auto fw-bold">{{ email.subject }}</span>
+<ng-container *ngIf="email$ | async as email">
+  <div class="card mb-3">
+    <div
+      class="card-header bg-light d-flex justify-content-center align-items-center"
+    >
+      <span class="me-md-auto fw-bold">{{ email.subject }}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-text fw-bold">{{ email.from }}</div>
+      <div class="card-text mb-3">To {{ email.to }}</div>
+      <div class="p-3 border rounded bg-white" [innerHTML]="email.html"></div>
+    </div>
   </div>
-  <div class="card-body">
-    <div class="card-text fw-bold">{{ email.from }}</div>
-    <div class="card-text mb-3">To {{ email.to }}</div>
-    <div class="p-3 border rounded bg-white" [innerHTML]="email.html"></div>
-  </div>
-</div>
 
-<div *ngIf="email">
-  <app-email-reply [email]="email"></app-email-reply>
-</div>
+  <div *ngIf="email">
+    <app-email-reply [email]="email"></app-email-reply>
+  </div>
+</ng-container>

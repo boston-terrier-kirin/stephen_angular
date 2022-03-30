@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { EmailService } from '../email.service';
 import { EmailSummary } from '../models/email-summary';
 
@@ -8,13 +9,11 @@ import { EmailSummary } from '../models/email-summary';
   styleUrls: ['./email-index.component.css'],
 })
 export class EmailIndexComponent implements OnInit {
-  emails: EmailSummary[] = [];
+  emails$ = new Observable<EmailSummary[]>();
 
   constructor(private emailService: EmailService) {}
 
   ngOnInit(): void {
-    this.emailService.getEmails().subscribe((emails) => {
-      this.emails = emails;
-    });
+    this.emails$ = this.emailService.getEmails();
   }
 }

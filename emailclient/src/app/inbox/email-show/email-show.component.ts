@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { EmailService } from '../email.service';
 import { Email } from '../models/email';
@@ -9,8 +10,8 @@ import { Email } from '../models/email';
   templateUrl: './email-show.component.html',
   styleUrls: ['./email-show.component.css'],
 })
-export class EmailShowComponent implements OnInit {
-  email?: Email;
+export class EmailShowComponent implements OnInit, OnChanges {
+  email$ = new Observable<Email>();
 
   constructor(
     private route: ActivatedRoute,
@@ -22,17 +23,19 @@ export class EmailShowComponent implements OnInit {
     // const id = this.route.snapshot.paramMap.get('id');
     // console.log(id);
 
-    this.route.params
-      .pipe(
-        // メール一覧を次々にクリックすると、メールの取得が終わらないうちに次のメールの取得が始まってしまう。
-        // switchMapを使って、新しいリクエストが走ったら、進行中のリクエストをキャンセルする。
-        switchMap((param) => {
-          const { id } = param;
-          return this.emailService.getEmail(id);
-        })
-      )
-      .subscribe((email) => {
-        this.email = email;
-      });
+    this.email$ = this.route.params.pipe(
+      // メール一覧を次々にクリックすると、メールの取得が終わらないうちに次のメールの取得が始まってしまう。
+      // switchMapを使って、新しいリクエストが走ったら、進行中のリクエストをキャンセルする。
+      switchMap((param) => {
+        const { id } = param;
+        return this.emailService.getEmail(id);
+      })
+    );
+  }
+
+  ngOnChanges(): void {
+    // OnChangesでも呼ばれない
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('ngOnChanges', id);
   }
 }
