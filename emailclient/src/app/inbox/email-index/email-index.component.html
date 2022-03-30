@@ -1,6 +1,11 @@
-<ul class="list-group list-group-flush">
-  <li class="list-group-item" *ngFor="let email of emails">
+<div class="list-group">
+  <a
+    [routerLink]="email.id"
+    routerLinkActive="bg-light"
+    *ngFor="let email of emails"
+    class="list-group-item list-group-item-action"
+  >
     <div class="fw-bold">{{ email.subject }}</div>
     {{ email.from }}
-  </li>
-</ul>
+  </a>
+</div>

@@ -10,10 +10,12 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {
+        // /inbox の場合
         path: '',
         component: PlaceholderComponent,
       },
       {
+        // /inbox/asfkjihgd の場合
         path: ':id',
         component: EmailShowComponent,
       },
