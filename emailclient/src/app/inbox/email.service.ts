@@ -6,6 +6,10 @@ import { EmailSummary } from './models/email-summary';
 
 const rootUrl = 'https://api.angular-email.com';
 
+interface SendEmailResponse {
+  status: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,5 +22,9 @@ export class EmailService {
 
   getEmail(id: string): Observable<Email> {
     return this.httpClient.get<Email>(`${rootUrl}/emails/${id}`);
+  }
+
+  sendEmail(email: Email) {
+    return this.httpClient.post<SendEmailResponse>(`${rootUrl}/emails`, email);
   }
 }
