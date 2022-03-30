@@ -1,24 +1,24 @@
 <div class="container">
   <header
-    class="d-flex flex-wrap justify-content-center p-3 mb-4 border-bottom"
+    class="d-flex flex-wrap justify-content-center p-2 mb-4 border-bottom"
   >
     <a
       routerLink="/"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
     >
-      <span class="fs-4 text-secondary">Angular Email</span>
+      <span class="fs-4">NG-MAIL</span>
     </a>
 
     <ul class="nav nav-pills">
       <ng-container *ngIf="signedin$ | async">
         <li class="nav-item">
           <a class="nav-link" routerLink="/inbox" routerLinkActive="active"
-            >Inbox</a
+            >INBOX</a
           >
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/signout" routerLinkActive="active"
-            >Signout</a
+            >SIGNOUT</a
           >
         </li>
       </ng-container>
@@ -29,12 +29,12 @@
             routerLink="/"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Signin</a
+            >SIGNIN</a
           >
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/signup" routerLinkActive="active"
-            >Signup</a
+            >SIGNUP</a
           >
         </li>
       </ng-container>

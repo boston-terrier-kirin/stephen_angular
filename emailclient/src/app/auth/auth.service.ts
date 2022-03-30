@@ -28,6 +28,7 @@ interface SigninResponse extends SignupResponse {}
 
 interface SignedinResponse {
   authenticated: boolean;
+  username: string;
 }
 
 @Injectable({
@@ -38,6 +39,7 @@ export class AuthService {
   // true : ログイン済み
   // false: ログインしていない
   signedin$ = new BehaviorSubject<boolean | null>(null);
+  username = '';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -54,9 +56,10 @@ export class AuthService {
     return this.httpClient
       .post<SignupResponse>(`${rootUrl}/auth/signup`, credentials)
       .pipe(
-        tap(() => {
+        tap((res) => {
           // エラーになったらtapはスキップされるので、無条件でtrueにしてOK。
           this.signedin$.next(true);
+          this.username = res.username;
         })
       );
   }
@@ -65,9 +68,10 @@ export class AuthService {
     return this.httpClient
       .post<SigninCredentials>(`${rootUrl}/auth/signin`, credentials)
       .pipe(
-        tap(() => {
+        tap((res) => {
           // エラーになったらtapはスキップされるので、無条件でtrueにしてOK。
           this.signedin$.next(true);
+          this.username = res.username;
         })
       );
   }
@@ -87,9 +91,10 @@ export class AuthService {
         .get<SignedinResponse>(`${rootUrl}/auth/signedin`)
         .pipe(
           tap((res) => {
-            const { authenticated } = res;
+            const { authenticated, username } = res;
             if (authenticated) {
               this.signedin$.next(true);
+              this.username = username;
             } else {
               // 初期値nullのままでは、AuthGuardがログイン/未ログインを判定できないので、falseをセットする。
               this.signedin$.next(false);

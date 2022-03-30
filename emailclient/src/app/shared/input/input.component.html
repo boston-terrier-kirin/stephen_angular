@@ -1,10 +1,21 @@
 <input
+  *ngIf="controlType === 'input'"
+  class="form-control"
   [formControl]="control"
   [type]="type"
   [placeholder]="placeholder"
-  class="form-control"
   [ngClass]="{ invalid: showErrors() }"
 />
+
+<textarea
+  *ngIf="controlType === 'textarea'"
+  class="form-control"
+  rows="10"
+  [formControl]="control"
+  [placeholder]="placeholder"
+  [ngClass]="{ invalid: showErrors() }"
+></textarea>
+
 <ng-container *ngIf="showErrors()">
   <span *ngIf="control?.errors?.['required']" class="text-danger">
     Value is requreid.
