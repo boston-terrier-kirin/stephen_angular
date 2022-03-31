@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import {
   filter,
@@ -35,7 +36,7 @@ export class ForecastService {
           .set('lat', coords.latitude)
           .set('lon', coords.longitude)
           .set('units', 'metric')
-          .set('appid', '');
+          .set('appid', environment.apiKey);
       }),
       switchMap((params) => {
         // 24時間/3時間*5日分=40レコード返ってくる。
