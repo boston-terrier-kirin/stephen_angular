@@ -28,7 +28,7 @@ export class ForecastService {
           .set('lat', coords.latitude)
           .set('lon', coords.longitude)
           .set('units', 'metric')
-          .set('appid', '32aeeabf53449eea4ab1ee21ea90201b');
+          .set('appid', '');
       }),
       switchMap((params) => {
         // 24時間/3時間*5日分=40レコード返ってくる。
