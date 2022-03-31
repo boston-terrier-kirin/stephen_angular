@@ -1,0 +1,19 @@
+/* :host は app-forecast のこと */
+:host {
+  position: fixed;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.temp,
+.day {
+  margin: 0;
+  text-align: center;
+}
+
+.temp {
+  font-weight: bold;
+}
