@@ -7,6 +7,4 @@ import { ForecastComponent } from './forecast/forecast.component';
   imports: [CommonModule],
   exports: [ForecastComponent],
 })
-export class WeatherModule {
-  // 32aeeabf53449eea4ab1ee21ea90201b
-}
+export class WeatherModule {}
