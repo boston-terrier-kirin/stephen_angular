@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { filter, map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import {
+  filter,
+  map,
+  mergeMap,
+  shareReplay,
+  switchMap,
+  toArray,
+} from 'rxjs/operators';
 import { Forcast } from './models/forcast';
 
 const url = 'https://api.openweathermap.org/data/2.5/forecast';
@@ -36,6 +43,8 @@ export class ForecastService {
           params,
         });
       }),
+      // shareReplayを入れておけば、マルチキャストができるようになる。HTTPリクエストは1回で、emitは複数個所に。
+      shareReplay(),
       map((res) => {
         return res.list;
       }),
