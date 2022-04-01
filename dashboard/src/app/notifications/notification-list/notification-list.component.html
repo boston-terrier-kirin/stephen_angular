@@ -1,6 +1,6 @@
 <div
   *ngFor="let message of messages$ | async"
-  class="alert"
+  class="alert alert-dismissible"
   [ngClass]="message.type === 'error' ? 'alert-danger' : 'alert-success'"
 >
   {{ message.text }}

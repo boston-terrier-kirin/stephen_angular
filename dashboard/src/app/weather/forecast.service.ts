@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import {
+  catchError,
   filter,
   map,
   mergeMap,
@@ -86,13 +87,12 @@ export class ForecastService {
         }
       );
     }).pipe(
-      tap({
-        next: () => {
-          this.notificationsService.addSuccess('Got your location.');
-        },
-        error: () => {
-          this.notificationsService.addError('Failed to get your location.');
-        },
+      tap(() => {
+        this.notificationsService.addSuccess('Got your location.');
+      }),
+      catchError((err) => {
+        this.notificationsService.addError('Failed ti gett your location.');
+        return throwError(() => err);
       })
     );
   }

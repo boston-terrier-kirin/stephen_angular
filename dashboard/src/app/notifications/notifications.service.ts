@@ -49,12 +49,12 @@ export class NotificationsService {
       text: message,
     });
 
-    setTimeout(() => {
-      this.messagesInput.next({
-        id,
-        type: 'clear',
-      });
-    }, 5000);
+    // setTimeout(() => {
+    //   this.messagesInput.next({
+    //     id,
+    //     type: 'clear',
+    //   });
+    // }, 5000);
   }
 
   clearMessage(id: string) {
