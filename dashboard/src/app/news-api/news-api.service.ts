@@ -5,6 +5,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Article } from './models/article';
 import { NewsApiResponse } from './models/news-api-response';
+import { NotificationsService } from '../notifications/notifications.service';
 
 const url = 'https://newsapi.org/v2/top-headlines';
 const pageSize = 20;
@@ -23,7 +24,10 @@ export class NewsApiService {
   pagesOutput$: Observable<Article[]>;
   numberOfPages: Subject<number>;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private notificationService: NotificationsService
+  ) {
     console.log('NewsApiService.constructor');
 
     this.pagesInput = new ReplaySubject();
@@ -47,6 +51,9 @@ export class NewsApiService {
       }),
       map((res) => {
         return res.articles;
+      }),
+      tap(() => {
+        this.notificationService.addSuccess('Fetched World News');
       })
     );
   }
