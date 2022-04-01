@@ -12,6 +12,8 @@ export class NotificationsService {
   messagesOutput$: Observable<Message[]>;
 
   constructor() {
+    console.log('NotificationsService.constructor');
+
     this.messagesInput = new Subject<Message>();
     this.messagesOutput$ = this.messagesInput.pipe(
       scan((messages: Message[], command: Message) => {
@@ -49,12 +51,12 @@ export class NotificationsService {
       text: message,
     });
 
-    // setTimeout(() => {
-    //   this.messagesInput.next({
-    //     id,
-    //     type: 'clear',
-    //   });
-    // }, 5000);
+    setTimeout(() => {
+      this.messagesInput.next({
+        id,
+        type: 'clear',
+      });
+    }, 5000);
   }
 
   clearMessage(id: string) {

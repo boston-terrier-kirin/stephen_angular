@@ -91,7 +91,7 @@ export class ForecastService {
         this.notificationsService.addSuccess('Got your location.');
       }),
       catchError((err) => {
-        this.notificationsService.addError('Failed ti gett your location.');
+        this.notificationsService.addError('Failed to get your location.');
         return throwError(() => err);
       })
     );
