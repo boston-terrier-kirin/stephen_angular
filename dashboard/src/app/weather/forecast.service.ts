@@ -42,7 +42,7 @@ export class ForecastService {
           .set('lat', coords.latitude)
           .set('lon', coords.longitude)
           .set('units', 'metric')
-          .set('appid', environment.apiKey);
+          .set('appid', environment.openweathermapKey);
       }),
       switchMap((params) => {
         // 24時間/3時間*5日分=40レコード返ってくる。
