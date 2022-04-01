@@ -8,9 +8,11 @@ import {
   mergeMap,
   shareReplay,
   switchMap,
+  tap,
   toArray,
 } from 'rxjs/operators';
 import { Forcast } from './models/forcast';
+import { NotificationsService } from '../notifications/notifications.service';
 
 const url = 'https://api.openweathermap.org/data/2.5/forecast';
 
@@ -27,7 +29,10 @@ interface OpenWeatherResponse {
   providedIn: 'root',
 })
 export class ForecastService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private notificationsService: NotificationsService
+  ) {}
 
   getForcast(): Observable<Forcast[]> {
     return this.getCurrentLocation().pipe(
@@ -80,7 +85,16 @@ export class ForecastService {
           observer.error(err);
         }
       );
-    });
+    }).pipe(
+      tap({
+        next: () => {
+          this.notificationsService.addSuccess('Got your location.');
+        },
+        error: () => {
+          this.notificationsService.addError('Failed to get your location.');
+        },
+      })
+    );
   }
 
   /**
