@@ -1,7 +1,20 @@
 <div class="field mb-5">
   <label class="label">{{ label }}</label>
   <div class="control">
+    <!--
+    maskを使うと、画面上のデータは変換されるが、裏のデータはそのままになる。
+    例えば名前とかをマスクすると、姓名の区切りが分からなくなる。
     <input
+      mask="(000) 0000-0000"
+      [formControl]="control"
+      class="input is-rounded"
+      [ngClass]="{
+        'is-danger': hasErrors()
+      }"
+    />
+    -->
+    <input
+      mask="(000) 0000-0000"
       [formControl]="control"
       class="input is-rounded"
       [ngClass]="{
