@@ -1,7 +1,16 @@
 import { FormControl } from '@angular/forms';
 
 export class DateFormControl extends FormControl {
-  override setValue(value: string, options: any) {
+  override setValue(value: string | null, options: any) {
+    // formをリセットするとvalueがnullになるのでチェックを入れる。
+    if (!value) {
+      super.setValue('', {
+        ...options,
+        emitModelToViewChange: true,
+      });
+      return;
+    }
+
     // 0-9と/以外は、今の値をそのままセットして無視する。
     if (value.match(/[^0-9|\/]/gi)) {
       super.setValue(this.value, {

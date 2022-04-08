@@ -1,36 +1,36 @@
-<nav class="navbar is-info mb-5">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="#">CREDIT CARD</a>
-  </div>
-</nav>
-
-<div class="container">
-  <div class="card">
-    <div class="card-content">
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        <app-input [control]="controls.name" label="Name"></app-input>
-        <app-input
-          [control]="controls.cardNumber"
-          label="Card Number"
-        ></app-input>
-        <app-input
-          [control]="controls.expiration"
-          label="Expiration (MM/YY)"
-        ></app-input>
-        <app-input
-          [control]="controls.securityCode"
-          label="Security Code"
-        ></app-input>
-        <button
-          class="button is-info is-rounded"
-          type="submit"
-          [disabled]="form.invalid"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <app-input [control]="controls.name" label="Name"></app-input>
+      <app-input
+        [control]="controls.cardNumber"
+        label="Card Number"
+      ></app-input>
+      <app-input
+        [control]="controls.expiration"
+        label="Expiration (MM/YY)"
+      ></app-input>
+      <app-input
+        [control]="controls.securityCode"
+        label="Security Code"
+      ></app-input>
+      <button
+        class="button is-info is-rounded mr-2"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+      <button
+        class="button is-warning is-rounded"
+        type="button"
+        (click)="reset()"
+      >
+        Reset
+      </button>
+    </form>
   </div>
 </div>
 
+<hr />
 {{ form.value | json }}

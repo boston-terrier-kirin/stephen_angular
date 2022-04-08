@@ -21,6 +21,10 @@ export class CardFormComponent implements OnInit {
     console.log(this.form.value);
   }
 
+  reset() {
+    this.form.reset();
+  }
+
   createControls() {
     const name = new FormControl('', [
       Validators.required,
