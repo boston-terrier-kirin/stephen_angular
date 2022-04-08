@@ -3,7 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+/**
+ * lazy loading を使う場合、app.moduleにモジュールのimportは不要になる。
+ */
 const routes: Routes = [
+  {
+    path: 'elements',
+    loadChildren: () =>
+      import('./elements/elements.module').then((m) => m.ElementsModule),
+  },
   {
     path: '',
     component: HomeComponent,

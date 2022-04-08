@@ -4,13 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CollectionsModule } from './collections/collections.module';
-import { ElementsModule } from './elements/elements.module';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, ElementsModule, CollectionsModule, AppRoutingModule],
+  imports: [BrowserModule, CollectionsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
@@ -30,4 +29,8 @@ export class AppModule {}
  * 　{ path: ''           ,component: HomeComponent,},
  * 　{ path: '**'         ,component: NotFoundComponent,},
  * 　⇒この順番になるので、想定通りの動きになる。
+ */
+
+/**
+ * lazy loading を使う場合、app.moduleにモジュールのimportは不要になる。
  */
