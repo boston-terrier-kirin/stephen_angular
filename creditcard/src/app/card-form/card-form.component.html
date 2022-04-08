@@ -1,21 +1,5 @@
 <form [formGroup]="form">
-  <input formControlName="name" />
-  <ng-container
-    *ngIf="form.controls['name'].touched && form.controls['name'].dirty"
-  >
-    {{ form.controls["name"].touched }}
-
-    <div *ngIf="form.controls['name'].errors?.['required']">
-      Value is required.
-    </div>
-    <div *ngIf="form.controls['name'].errors?.['minlength']">
-      Value you enter is
-      {{ form.controls['name'].errors?.['minlength'].actualLength }}
-      charactors long, but it must be at least
-      {{ form.controls['name'].errors?.['minlength'].requiredLength }}
-      charactors.
-    </div>
-  </ng-container>
+  <app-input [control]="controls.name"></app-input>
 </form>
 
 {{ form.value | json }}

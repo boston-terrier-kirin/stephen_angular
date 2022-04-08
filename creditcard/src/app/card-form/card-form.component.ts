@@ -7,15 +7,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./card-form.component.css'],
 })
 export class CardFormComponent implements OnInit {
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  });
+  controls = this.createControls();
+  form = new FormGroup(this.controls);
 
   constructor() {
     console.log(this.form.controls['name']);
   }
 
   ngOnInit(): void {}
+
+  createControls() {
+    const name = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]);
+
+    return {
+      name,
+    };
+  }
 
   showState() {
     const target = this.form.controls['name'];
