@@ -1,0 +1,15 @@
+<table class="ui celled striped table">
+  <thead>
+    <tr>
+      <th *ngFor="let th of header">{{ th.label }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tr of data">
+      <td *ngFor="let th of header">
+        <!-- th.keyは文字通りDataのkeyになっているので、keyof Dataにするのが正しい。 -->
+        {{ tr[th.key] }}
+      </td>
+    </tr>
+  </tbody>
+</table>
