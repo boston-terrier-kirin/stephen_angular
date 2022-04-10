@@ -20,6 +20,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'views',
+    loadChildren: () =>
+      import('./views/views.module').then((m) => m.ViewsModule),
+  },
+  {
     path: '',
     component: HomeComponent,
   },
