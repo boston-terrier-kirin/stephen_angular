@@ -2,39 +2,28 @@
 <app-table [header]="header" [data]="data"></app-table>
 
 <app-divider>Tab Menu</app-divider>
-<div class="ui grid">
-  <div class="four wide column">
-    <div class="ui vertical fluid tabular menu">
-      <!--
-          これだと、http://localhost:4200 に戻ってしまうので、./ にする。
-          <a routerLink="" routerLinkActive="active" class="item">Biography</a>
-      -->
-      <!--
-          ../elements で、http://localhost:4200/elements に遷移させることも可能。
-          <a routerLink="../elements" routerLinkActive="active" class="item">Elements</a>
-      -->
-      <!--
-          /collections で回避するのも最悪あり。
-          <a routerLink="/collections" routerLinkActive="active" class="item">Biography</a>
-      -->
-      <a
-        routerLink="./"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="item"
-        >Biography</a
-      >
-      <a routerLink="./companies" routerLinkActive="active" class="item"
-        >Companies</a
-      >
-      <a routerLink="./partners" routerLinkActive="active" class="item"
-        >Partners</a
-      >
-    </div>
-  </div>
-  <div class="twelve wide stretched column">
-    <div class="ui segment">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+<app-tabs>
+  <!--
+    これだと、http://localhost:4200 に戻ってしまうので、./ にする。
+    <a routerLink="" routerLinkActive="active" class="item">Biography</a>
+  -->
+  <!--
+    /collections で回避するのも最悪あり。
+    <a routerLink="/collections" routerLinkActive="active" class="item">Biography</a>
+  -->
+  <!--
+    ../elements で、http://localhost:4200/elements に遷移させることも可能。
+    <a routerLink="../elements" routerLinkActive="active" class="item">Elements</a>
+  -->
+  <a
+    routerLink="./"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="item"
+    >Biography</a
+  >
+  <a routerLink="./companies" routerLinkActive="active" class="item"
+    >Companies</a
+  >
+  <a routerLink="./partners" routerLinkActive="active" class="item">Partners</a>
+</app-tabs>
