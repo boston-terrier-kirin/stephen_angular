@@ -17,7 +17,13 @@
           /collections で回避するのも最悪あり。
           <a routerLink="/collections" routerLinkActive="active" class="item">Biography</a>
       -->
-      <a routerLink="./" routerLinkActive="active" class="item">Biography</a>
+      <a
+        routerLink="./"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="item"
+        >Biography</a
+      >
       <a routerLink="./companies" routerLinkActive="active" class="item"
         >Companies</a
       >
