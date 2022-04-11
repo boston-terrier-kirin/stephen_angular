@@ -4,7 +4,7 @@
       <nav>
         <ul class="pagination">
           <!-- PREV -->
-          <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
+          <li class="page-item" [appClass]="{ disabled: currentPage === 0 }">
             <a (click)="currentPage = currentPage - 1" class="page-link"
               >Prev</a
             >
@@ -24,7 +24,7 @@
           <!-- NEXT -->
           <li
             class="page-item"
-            [ngClass]="{ disabled: currentPage === images.length - 1 }"
+            [appClass]="{ disabled: currentPage === images.length - 1 }"
           >
             <a (click)="currentPage = currentPage + 1" class="page-link"
               >Next</a
@@ -38,7 +38,21 @@
   <div class="row justify-content-center">
     <div class="col-6">
       <div>
-        <h4>{{ images[currentPage].title }}</h4>
+        <!-- 
+          VER1
+          この時の、appClassはディレクティブで、
+           [backgroundColor]ｇば、appClassのプロパティになっている。
+        <h4 appClass [backgroundColor]="'green'">
+          {{ images[currentPage].title }}
+        </h4>
+        -->
+        <!--
+          VER2
+          ディレクティブとプロパティ名を同じにしたバージョン。
+        <h4 [appClass]="'green'">
+          {{ images[currentPage].title }}
+        </h4>
+        -->
         <img [src]="images[currentPage].url" />
       </div>
     </div>
