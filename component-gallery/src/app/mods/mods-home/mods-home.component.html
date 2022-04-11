@@ -1,3 +1,16 @@
 <app-divider>Modal Component</app-divider>
 <button class="ui button" (click)="toggleModal()">Show Modal</button>
-<app-modal *ngIf="modalOpen" (close)="toggleModal()"></app-modal>
+<app-modal *ngIf="modalOpen" (close)="toggleModal()">
+  <div modalTitle>REUSABLE TITLE</div>
+  <p>MOOODAL!!!</p>
+  <div modalFooter>
+    <!--
+        ここのtoggleModal()は、ModsHomeComponentの関数になるのがポイント。
+        ⇒ここはmods-home.component.htmlだから。
+
+        modal.component.htmlにもcloseModal()があって、そっちは
+        ModalComponentの関数になる。若干、混乱ポイント。
+    -->
+    <button class="ui button" (click)="toggleModal()">CLOSE</button>
+  </div>
+</app-modal>

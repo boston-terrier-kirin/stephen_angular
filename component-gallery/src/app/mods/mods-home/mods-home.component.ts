@@ -14,5 +14,6 @@ export class ModsHomeComponent implements OnInit {
 
   toggleModal() {
     this.modalOpen = !this.modalOpen;
+    console.log(this.modalOpen);
   }
 }
