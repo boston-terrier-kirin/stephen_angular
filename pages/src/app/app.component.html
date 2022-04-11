@@ -1,25 +1,32 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-6">
       <nav>
         <ul class="pagination">
+          <!-- PREV -->
           <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
-            <a class="page-link" (click)="currentPage = currentPage - 1"
+            <a (click)="currentPage = currentPage - 1" class="page-link"
               >Prev</a
             >
           </li>
-          <li
-            class="page-item"
-            *ngFor="let image of images; let i = index"
-            [ngClass]="getClass(i)"
-          >
-            <a class="page-link" (click)="currentPage = i">{{ i + 1 }}</a>
-          </li>
+
+          <!-- PAGING -->
+          <ng-container *ngFor="let image of images; let i = index">
+            <li
+              *ngIf="checkWindowIndex(i)"
+              class="page-item"
+              [ngClass]="getClass(i)"
+            >
+              <a (click)="currentPage = i" class="page-link">{{ i + 1 }}</a>
+            </li>
+          </ng-container>
+
+          <!-- NEXT -->
           <li
             class="page-item"
             [ngClass]="{ disabled: currentPage === images.length - 1 }"
           >
-            <a class="page-link" (click)="currentPage = currentPage + 1"
+            <a (click)="currentPage = currentPage + 1" class="page-link"
               >Next</a
             >
           </li>
@@ -27,8 +34,9 @@
       </nav>
     </div>
   </div>
+
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-6">
       <div>
         <h4>{{ images[currentPage].title }}</h4>
         <img [src]="images[currentPage].url" />
