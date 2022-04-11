@@ -4,7 +4,7 @@
     <li
       class="page-item"
       *ngFor="let image of images; let i = index"
-      [ngClass]="{ active: i === currentPage }"
+      [ngClass]="getClass(i)"
     >
       <a class="page-link" href="#">{{ i + 1 }}</a>
     </li>

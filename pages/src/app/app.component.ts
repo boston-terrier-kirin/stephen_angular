@@ -26,4 +26,15 @@ export class AppComponent {
       url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGZvcmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
     },
   ];
+
+  // [ngClass]から呼び出すのもOK。
+  getClass(i: number): string[] {
+    const classes: string[] = [];
+    if (i === this.currentPage) {
+      classes.push('active');
+      classes.push('disabled');
+    }
+
+    return classes;
+  }
 }
