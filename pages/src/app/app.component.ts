@@ -32,7 +32,6 @@ export class AppComponent {
     const classes: string[] = [];
     if (i === this.currentPage) {
       classes.push('active');
-      classes.push('disabled');
     }
 
     return classes;
