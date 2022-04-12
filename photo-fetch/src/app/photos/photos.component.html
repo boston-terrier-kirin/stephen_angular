@@ -1,1 +1,12 @@
-<p>photos works!</p>
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-12 text-center">
+      <button (click)="getPhoto()" class="btn btn-primary">FETCH PHOTO</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <img [src]="photoUrl" class="rounded" />
+    </div>
+  </div>
+</div>
