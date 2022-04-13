@@ -1,7 +1,7 @@
-<form class="row g-3" (submit)="submit($event)">
+<form [formGroup]="form" (ngSubmit)="submit()" class="row g-3">
   <div class="col">
     <input
-      (input)="input($event)"
+      formControlName="term"
       class="form-control"
       placeholder="Search Wikipedia"
     />
