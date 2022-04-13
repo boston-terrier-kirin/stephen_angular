@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   {{ form.controls["a"].value }} + {{ form.controls["b"].value }} =
-  <input formControlName="answer" />
+  <input appAnswerHighlight formControlName="answer" />
 </form>
 
 {{ secondsPerSolution | number: "1.1-3" }}

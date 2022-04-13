@@ -22,6 +22,10 @@ export class EquationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.form.valueChanges.subscribe((value) => {
+      console.log('valueChanges', value);
+    });
+
     this.form.statusChanges
       .pipe(
         // FormStatusがVALIDの場合のみに絞る
