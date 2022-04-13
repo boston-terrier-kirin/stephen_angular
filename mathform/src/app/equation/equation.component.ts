@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { delay, filter } from 'rxjs/operators';
 import { MathValidator } from '../validators/MathValidator';
 
 @Component({
@@ -20,12 +21,20 @@ export class EquationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.form.statusChanges.subscribe((value) => {
-      console.log(value);
-      if (value === 'VALID') {
-        // this.form.controls['a'].setValue(this.randomNumber());
-        // this.form.controls['b'].setValue(this.randomNumber());
-        // this.form.controls['answer'].setValue('');
+    this.form.statusChanges
+      .pipe(
+        // FormStatusがVALIDの場合のみに絞る
+        filter((value) => value === 'VALID'),
+        // 0.1秒遅らせる
+        delay(100)
+      )
+      .subscribe((value) => {
+        // patchValue は一部の値でもOK
+        this.form.patchValue({
+          a: this.randomNumber(),
+          b: this.randomNumber(),
+          answer: '',
+        });
 
         // setValue は全部の値を変える。
         // this.form.setValue({
@@ -34,14 +43,11 @@ export class EquationComponent implements OnInit {
         //   answer: '',
         // });
 
-        // patchValue は一部の値でもOK
-        this.form.patchValue({
-          a: this.randomNumber(),
-          b: this.randomNumber(),
-          answer: '',
-        });
-      }
-    });
+        // これは面倒。
+        // this.form.controls['a'].setValue(this.randomNumber());
+        // this.form.controls['b'].setValue(this.randomNumber());
+        // this.form.controls['answer'].setValue('');
+      });
   }
 
   randomNumber() {
