@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { delay, filter } from 'rxjs/operators';
+import { delay, filter, scan } from 'rxjs/operators';
 import { MathValidator } from '../validators/MathValidator';
 
 @Component({
@@ -9,6 +9,7 @@ import { MathValidator } from '../validators/MathValidator';
   styleUrls: ['./equation.component.css'],
 })
 export class EquationComponent implements OnInit {
+  secondsPerSolution = 0;
   form = new FormGroup(
     {
       a: new FormControl(this.randomNumber()),
@@ -26,9 +27,23 @@ export class EquationComponent implements OnInit {
         // FormStatusがVALIDの場合のみに絞る
         filter((value) => value === 'VALID'),
         // 0.1秒遅らせる
-        delay(100)
+        delay(100),
+        // scanはreduce
+        scan(
+          (acc, value) => {
+            return {
+              numberSolved: acc.numberSolved + 1,
+              startTime: acc.startTime,
+            };
+          },
+          { numberSolved: 0, startTime: new Date() }
+        )
       )
       .subscribe((value) => {
+        const { numberSolved, startTime } = value;
+        this.secondsPerSolution =
+          (new Date().getTime() - startTime.getTime()) / numberSolved / 1000;
+
         // patchValue は一部の値でもOK
         this.form.patchValue({
           a: this.randomNumber(),
