@@ -1,1 +1,10 @@
-<p>equation works!</p>
+<form [formGroup]="form">
+  {{ form.controls["a"].value }} + {{ form.controls["b"].value }} =
+  <input formControlName="answer" />
+</form>
+
+<hr />
+
+<div>Form is valid: {{ form.valid }}</div>
+<div>Form values: {{ form.value | json }}</div>
+<div>Form errors: {{ form.errors | json }}</div>
