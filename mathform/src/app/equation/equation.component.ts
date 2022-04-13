@@ -19,7 +19,30 @@ export class EquationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form.statusChanges.subscribe((value) => {
+      console.log(value);
+      if (value === 'VALID') {
+        // this.form.controls['a'].setValue(this.randomNumber());
+        // this.form.controls['b'].setValue(this.randomNumber());
+        // this.form.controls['answer'].setValue('');
+
+        // setValue は全部の値を変える。
+        // this.form.setValue({
+        //   a: this.randomNumber(),
+        //   b: this.randomNumber(),
+        //   answer: '',
+        // });
+
+        // patchValue は一部の値でもOK
+        this.form.patchValue({
+          a: this.randomNumber(),
+          b: this.randomNumber(),
+          answer: '',
+        });
+      }
+    });
+  }
 
   randomNumber() {
     return Math.floor(Math.random() * 10);
