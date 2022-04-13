@@ -1,11 +1,11 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
 @Directive({
   selector: '[appAnswerHighlight]',
 })
-export class AnswerHighlightDirective {
+export class AnswerHighlightDirective implements OnInit {
   constructor(private elementRef: ElementRef, private controlName: NgControl) {}
 
   ngOnInit() {
