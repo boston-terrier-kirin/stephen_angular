@@ -1,7 +1,12 @@
-<form (submit)="submit($event)">
-  <input
-    (input)="input($event)"
-    class="form-control"
-    placeholder="Search Wikipedia"
-  />
+<form class="row g-3" (submit)="submit($event)">
+  <div class="col">
+    <input
+      (input)="input($event)"
+      class="form-control"
+      placeholder="Search Wikipedia"
+    />
+  </div>
+  <div class="col">
+    <button type="submit" class="btn btn-primary">SERCH</button>
+  </div>
 </form>
